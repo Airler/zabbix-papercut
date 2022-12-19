@@ -1,4 +1,4 @@
-# Zabbix template for PaperCut NG and MF monitoring
+# Zabbix template for PaperCut NG and PaperCut MF monitoring
 
 ## Overview
 
