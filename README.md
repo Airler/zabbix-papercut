@@ -8,16 +8,29 @@ The template to monitor PaperCut MF and PaperCut NG by Zabbix 6.x using HTTP age
 
 > See [Zabbix templates importing](https://www.zabbix.com/documentation/5.2/manual/xml_export_import/templates#importing) for basic instructions on how to import a template.
 
-Create a PaperCut host and link this template to it.
+1. Create a new host
+2. Set/change the host macros required for PaperCut authentication:
+```text
+{$PAPERCUT_AUTH_KEY}
+{$PAPERCUT_PORT}
+```
+3. Link the template to host created early
 
 ## Zabbix configuration
 
-- Set/change the {$PAPERCUT_AUTH_KEY} macro in host settings to match your authorization key. See [Get PaperCut Monitoring details](https://www.papercut.com/kb/Main/SystemHealthZabbix#step-1-get-the-papercut-ng-or-mf-system-health-monitoring-details)
-- Set/change the {$PAPERCUT_PORT} macro in host settings to match your PaperCut port.
+No specific Zabbix configuration is required
+
+### Macros used
+
+|Name|Description|Default|
+|----|-----------|-------|
+|{$PAPERCUT_AUTH_KEY} |<p>PaperCut authentication key. (http://localhost:9191/app?service=page/OptionsAdvanced)</p> |`` |
+|{$PAPERCUT_PORT} |<p>Port on which PaperCut is listening.</p> |`` |
+|{$PAPERCUT.NODATA_TIMEOUT} |<p>Timeout after which no data trigger will be executed.</p> |``30m |
 
 ## Template links
 
-This template does not require additional templates.
+There are no template links in this template.
 
 ## Discovery rules
 
