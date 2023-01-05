@@ -1,13 +1,10 @@
 zabbix_export:
   version: '6.2'
-  date: '2023-01-05T10:34:29Z'
+  date: '2023-01-05T11:55:10Z'
   template_groups:
     -
       uuid: a571c0d144b14fd4a87a9d9b2aa9fcd6
       name: Templates/Applications
-    -
-      uuid: a44924de4d49439f80e28a1a4795f6ae
-      name: Templates/HOEB
   templates:
     -
       uuid: f0fb860658094c05b127d07c0d8a07f0
@@ -17,8 +14,6 @@ zabbix_export:
       groups:
         -
           name: Templates/Applications
-        -
-          name: Templates/HOEB
       items:
         -
           uuid: f84c0c636a1a414e9f5b2bfaa3b198da
@@ -575,16 +570,16 @@ zabbix_export:
       discovery_rules:
         -
           uuid: 30a0283d2d964388ac0b70b82256fbe1
-          name: 'PaperCut Devices'
+          name: 'PaperCut device discovery'
           type: DEPENDENT
           key: papercut.device.discovery
           delay: '0'
           item_prototypes:
             -
               uuid: 6ed9f65e98ab4705b5a5b7a9e7add305
-              name: 'Device {#DEVICENAME}: Status Description'
+              name: 'Device {#DEVICE_NAME}: Status Description'
               type: DEPENDENT
-              key: 'papercut.device.status.description["{#DEVICENAME}"]'
+              key: 'papercut.device.status.description["{#DEVICE_NAME}"]'
               delay: '0'
               trends: '0'
               value_type: TEXT
@@ -592,7 +587,7 @@ zabbix_export:
                 -
                   type: JSONPATH
                   parameters:
-                    - '$.devices[?(@.name == "{#DEVICENAME}")].state.statusDescription.first()'
+                    - '$.devices[?(@.name == "{#DEVICE_NAME}")].state.statusDescription.first()'
               master_item:
                 key: papercut.api.devices
               tags:
@@ -601,9 +596,9 @@ zabbix_export:
                   value: health
             -
               uuid: 1b1be7af45a846179b33c2324db68612
-              name: 'Device {#DEVICENAME}: Status'
+              name: 'Device {#DEVICE_NAME}: Status'
               type: DEPENDENT
-              key: 'papercut.device.status["{#DEVICENAME}"]'
+              key: 'papercut.device.status["{#DEVICE_NAME}"]'
               delay: '0'
               trends: '0'
               value_type: TEXT
@@ -611,7 +606,7 @@ zabbix_export:
                 -
                   type: JSONPATH
                   parameters:
-                    - '$.devices[?(@.name == "{#DEVICENAME}")].state.status.first()'
+                    - '$.devices[?(@.name == "{#DEVICE_NAME}")].state.status.first()'
               master_item:
                 key: papercut.api.devices
               tags:
@@ -621,8 +616,8 @@ zabbix_export:
               trigger_prototypes:
                 -
                   uuid: a535af867d3b445fbab35df9ae2f2eba
-                  expression: 'last(/PaperCut by HTTP/papercut.device.status["{#DEVICENAME}"],#5)<>"OK"'
-                  name: 'PaperCut: Device {#DEVICENAME} not OK!'
+                  expression: 'last(/PaperCut by HTTP/papercut.device.status["{#DEVICE_NAME}"],#5)<>"OK"'
+                  name: 'PaperCut: Device {#DEVICE_NAME} not OK!'
                   priority: WARNING
                   tags:
                     -
@@ -635,38 +630,42 @@ zabbix_export:
             key: papercut.api.devices
           lld_macro_paths:
             -
-              lld_macro: '{#DEVICENAME}'
+              lld_macro: '{#DEVICE_NAME}'
               path: $.name
           preprocessing:
             -
               type: JSONPATH
               parameters:
                 - $.devices
+            -
+              type: DISCARD_UNCHANGED_HEARTBEAT
+              parameters:
+                - 6h
         -
           uuid: 40f4a8ed0c9940a1ab25680fc2c400a8
-          name: 'PaperCut Printers'
+          name: 'PaperCut printer discovery'
           type: DEPENDENT
           key: papercut.printer.discovery
           delay: '0'
           item_prototypes:
             -
               uuid: 030287d84b82442e8c1dd605c4cfb179
-              name: 'Printer {#PRINTERNAME}: Held Jobs'
+              name: 'Printer {#PRINTER_NAME}: Held Jobs'
               type: DEPENDENT
-              key: 'papercut.printer.heldjobs["{#PRINTERNAME}"]'
+              key: 'papercut.printer.heldjobs["{#PRINTER_NAME}"]'
               delay: '0'
               preprocessing:
                 -
                   type: JSONPATH
                   parameters:
-                    - '$.printers[?(@.name == "{#PRINTERNAME}")].heldJobsCount.first()'
+                    - '$.printers[?(@.name == "{#PRINTER_NAME}")].heldJobsCount.first()'
               master_item:
                 key: papercut.api.printers
             -
               uuid: b26e2c55236d42e5a7ceee3b4d9b304d
-              name: 'Printer {#PRINTERNAME}: Status'
+              name: 'Printer {#PRINTER_NAME}: Status'
               type: DEPENDENT
-              key: 'papercut.printer.status["{#PRINTERNAME}"]'
+              key: 'papercut.printer.status["{#PRINTER_NAME}"]'
               delay: '0'
               trends: '0'
               value_type: TEXT
@@ -674,7 +673,7 @@ zabbix_export:
                 -
                   type: JSONPATH
                   parameters:
-                    - '$.printers[?(@.name == "{#PRINTERNAME}")].status.first()'
+                    - '$.printers[?(@.name == "{#PRINTER_NAME}")].status.first()'
               master_item:
                 key: papercut.api.printers
               tags:
@@ -684,8 +683,8 @@ zabbix_export:
               trigger_prototypes:
                 -
                   uuid: 2fe1c1ea8aa44a7ba738c4d82e265653
-                  expression: 'last(/PaperCut by HTTP/papercut.printer.status["{#PRINTERNAME}"],#5)<>"OK"'
-                  name: 'PaperCut: Printer {#PRNAME} not OK!'
+                  expression: 'last(/PaperCut by HTTP/papercut.printer.status["{#PRINTER_NAME}"],#5)<>"OK"'
+                  name: 'PaperCut: Printer {#PRINTER_NAME} not OK!'
                   priority: WARNING
                   tags:
                     -
@@ -698,13 +697,17 @@ zabbix_export:
             key: papercut.api.printers
           lld_macro_paths:
             -
-              lld_macro: '{#PRINTERNAME}'
+              lld_macro: '{#PRINTER_NAME}'
               path: $.name
           preprocessing:
             -
               type: JSONPATH
               parameters:
                 - $.printers
+            -
+              type: DISCARD_UNCHANGED_HEARTBEAT
+              parameters:
+                - 6h
       httptests:
         -
           uuid: 58feeae1830d473c81db8eabbcdc2acd
