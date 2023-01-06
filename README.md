@@ -6,7 +6,7 @@ The template to monitor PaperCut MF and PaperCut NG by Zabbix 6.x using HTTP age
 
 ## Setup
 
-> See [Zabbix templates importing](https://www.zabbix.com/documentation/5.2/manual/xml_export_import/templates#importing) for basic instructions on how to import a template.
+> See [Zabbix templates importing](https://www.zabbix.com/documentation/6.0/manual/xml_export_import/templates#importing) for basic instructions on how to import a template.
 
 1. Create a new host
 2. Set/change the host macros required for PaperCut authentication:
