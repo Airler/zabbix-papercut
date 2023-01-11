@@ -36,8 +36,8 @@ There are no template links in this template.
 
 |Name|Description|Type|Key and additional info|
 |----|-----------|----|----|
-|PaperCut device discovery|Discovery of all printer devices from PaperCut|Dependent_item|papercut.device.discovery <p>**Preprocessing**:<br>- JSONPath: `$.devices`<br>- DISCARD_UNCHANGED_HEARTBEAT: `6h`</p> |
-|PaperCut printer discovery|Discovery of all printers from PaperCut|Dependent_item|papercut.printer.discovery <p>**Preprocessing**:<br>- JSONPath: `$.printers`<br>- DISCARD_UNCHANGED_HEARTBEAT: `6h`</p> |
+|PaperCut device discovery|Discovery of all printer devices from PaperCut|DEPENDENT|papercut.device.discovery <p>**Preprocessing**:<br>- JSONPath: `$.devices`<br>- DISCARD_UNCHANGED_HEARTBEAT: `6h`</p> |
+|PaperCut printer discovery|Discovery of all printers from PaperCut|DEPENDENT|papercut.printer.discovery <p>**Preprocessing**:<br>- JSONPath: `$.printers`<br>- DISCARD_UNCHANGED_HEARTBEAT: `6h`</p> |
 
 ## Items collected
 
@@ -46,30 +46,30 @@ There are no template links in this template.
 |PaperCut API: Devices| |HTTP_Agent|papercut.api.devices|
 |PaperCut API: Monitoring| |HTTP_Agent|papercut.api|
 |PaperCut API: Printers| |HTTP_Agent|papercut.api.printers|
-|PaperCut Database Active Connections| |Dependent_item|papercut.database.activeConnections <p>**Preprocessing**:<br>- JSONPath: `$.database.activeConnections`</p> |
-|PaperCut Database Max Connections| |Dependent_item|papercut.database.maxConnections <p>**Preprocessing**:<br>- JSONPath: `$.database.maxConnections`</p> |
-|PaperCut Database Status| |Dependent_item|papercut.database.status <p>**Preprocessing**:<br>- JSONPath: `$.database.status`</p> |
-|PaperCut Devices Count| |Dependent_item|papercut.devices.total <p>**Preprocessing**:<br>- JSONPath: `$.devices.count`</p> |
-|PaperCut Devices in Error| |Dependent_item|papercut.devices.inErrorCount <p>**Preprocessing**:<br>- JSONPath: `$.devices.inErrorCount`</p> |
-|PaperCut Devices in Error Percentage| |Dependent_item|papercut.devices.inErrorPercentage <p>**Preprocessing**:<br>- JSONPath: `$.devices.inErrorPercentage`</p> |
-|PaperCut Disk Space Free| |Dependent_item|papercut.system.diskspace.free <p>**Preprocessing**:<br>- JSONPath: `$.applicationServer.systemMetrics.diskSpaceFreeMB`<br>- Custom multiplier: `1024000`</p> |
-|PaperCut DiskSpace Used| |Dependent_item|papercut.system.diskspace.used <p>**Preprocessing**:<br>- JSONPath: `$.applicationServer.systemMetrics.diskSpaceUsedPercentage`</p> |
-|PaperCut Held Jobs Count| |Dependent_item|papercut.printers.heldJobCountTotal <p>**Preprocessing**:<br>- JSONPath: `$.printers.heldJobCountTotal`</p> |
-|PaperCut Held Jobs Count Max| |Dependent_item|papercut.printers.heldJobsCountMax <p>**Preprocessing**:<br>- JSONPath: `$.printers.heldJobsCountMax`</p> |
-|PaperCut JVM Memory Used Percentage| |Dependent_item|papercut.system.jvmMemoryUsed <p>**Preprocessing**:<br>- JSONPath: `$.applicationServer.systemMetrics.jvmMemoryUsedPercentage`</p> |
+|PaperCut Database Active Connections| |DEPENDENT|papercut.database.activeConnections <p>**Preprocessing**:<br>- JSONPath: `$.database.activeConnections`</p> |
+|PaperCut Database Max Connections| |DEPENDENT|papercut.database.maxConnections <p>**Preprocessing**:<br>- JSONPath: `$.database.maxConnections`</p> |
+|PaperCut Database Status| |DEPENDENT|papercut.database.status <p>**Preprocessing**:<br>- JSONPath: `$.database.status`</p> |
+|PaperCut Devices Count| |DEPENDENT|papercut.devices.total <p>**Preprocessing**:<br>- JSONPath: `$.devices.count`</p> |
+|PaperCut Devices in Error| |DEPENDENT|papercut.devices.inErrorCount <p>**Preprocessing**:<br>- JSONPath: `$.devices.inErrorCount`</p> |
+|PaperCut Devices in Error Percentage| |DEPENDENT|papercut.devices.inErrorPercentage <p>**Preprocessing**:<br>- JSONPath: `$.devices.inErrorPercentage`</p> |
+|PaperCut Disk Space Free| |DEPENDENT|papercut.system.diskspace.free <p>**Preprocessing**:<br>- JSONPath: `$.applicationServer.systemMetrics.diskSpaceFreeMB`<br>- Custom multiplier: `1024000`</p> |
+|PaperCut DiskSpace Used| |DEPENDENT|papercut.system.diskspace.used <p>**Preprocessing**:<br>- JSONPath: `$.applicationServer.systemMetrics.diskSpaceUsedPercentage`</p> |
+|PaperCut Held Jobs Count| |DEPENDENT|papercut.printers.heldJobCountTotal <p>**Preprocessing**:<br>- JSONPath: `$.printers.heldJobCountTotal`</p> |
+|PaperCut Held Jobs Count Max| |DEPENDENT|papercut.printers.heldJobsCountMax <p>**Preprocessing**:<br>- JSONPath: `$.printers.heldJobsCountMax`</p> |
+|PaperCut JVM Memory Used Percentage| |DEPENDENT|papercut.system.jvmMemoryUsed <p>**Preprocessing**:<br>- JSONPath: `$.applicationServer.systemMetrics.jvmMemoryUsedPercentage`</p> |
 |PaperCut printed pages in the last 60 minutes| |HTTP_Agent|papercut.api.stats.recentPagesCount <p>**Preprocessing**:<br>- JSONPath: `$.recentPagesCount`</p> |
-|PaperCut Printers Count| |Dependent_item|papercut.printers.total <p>**Preprocessing**:<br>- JSONPath: `$.printers.count`</p> |
-|PaperCut Printers in Error| |Dependent_item|papercut.printers.inErrorCount <p>**Preprocessing**:<br>- JSONPath: `$.printers.inErrorCount`</p> |
-|PaperCut Printers in Error Percentage| |Dependent_item|papercut.printers.inErrorPercentage <p>**Preprocessing**:<br>- JSONPath: `$.printers.inErrorPercentage`</p> |
-|PaperCut Uptime| |Dependent_item|papercut.system.uptimeHours <p>**Preprocessing**:<br>- JSONPath: `$.applicationServer.systemMetrics.uptimeHours`</p> |
-|PaperCut Valid License| |Dependent_item|papercut.license.valid <p>**Preprocessing**:<br>- JSONPath: `$.license.valid`</p> |
-|PaperCut Valid License Remaining Days| |Dependent_item|papercut.license.upgradeAssuranceRemainingDays <p>**Preprocessing**:<br>- JSONPath: `$.license.upgradeAssuranceRemainingDays`<br>- Custom multiplier: `86400`</p> |
-|PaperCut Version| |Dependent_item|papercut.system.version <p>**Preprocessing**:<br>- JSONPath: `$.applicationServer.systemInfo.version`</p> |
+|PaperCut Printers Count| |DEPENDENT|papercut.printers.total <p>**Preprocessing**:<br>- JSONPath: `$.printers.count`</p> |
+|PaperCut Printers in Error| |DEPENDENT|papercut.printers.inErrorCount <p>**Preprocessing**:<br>- JSONPath: `$.printers.inErrorCount`</p> |
+|PaperCut Printers in Error Percentage| |DEPENDENT|papercut.printers.inErrorPercentage <p>**Preprocessing**:<br>- JSONPath: `$.printers.inErrorPercentage`</p> |
+|PaperCut Uptime| |DEPENDENT|papercut.system.uptimeHours <p>**Preprocessing**:<br>- JSONPath: `$.applicationServer.systemMetrics.uptimeHours`</p> |
+|PaperCut Valid License| |DEPENDENT|papercut.license.valid <p>**Preprocessing**:<br>- JSONPath: `$.license.valid`</p> |
+|PaperCut Valid License Remaining Days| |DEPENDENT|papercut.license.upgradeAssuranceRemainingDays <p>**Preprocessing**:<br>- JSONPath: `$.license.upgradeAssuranceRemainingDays`<br>- Custom multiplier: `86400`</p> |
+|PaperCut Version| |DEPENDENT|papercut.system.version <p>**Preprocessing**:<br>- JSONPath: `$.applicationServer.systemInfo.version`</p> |
 |Percentage Active Connections| |Calculated|papercut.database.activeConnections.percentage|
-|Device {#DEVICE_NAME}: Status| |Dependent_item|papercut.device.status["{#DEVICE_NAME}"] <p>**Preprocessing**:<br>- JSONPath: `$.devices[?(@.name == "{#DEVICE_NAME}")].state.status.first()`</p> |
-|Device {#DEVICE_NAME}: Status Description| |Dependent_item|papercut.device.status.description["{#DEVICE_NAME}"] <p>**Preprocessing**:<br>- JSONPath: `$.devices[?(@.name == "{#DEVICE_NAME}")].state.statusDescription.first()`</p> |
-|Printer {#PRINTER_NAME}: Held Jobs| |Dependent_item|papercut.printer.heldjobs["{#PRINTER_NAME}"] <p>**Preprocessing**:<br>- JSONPath: `$.printers[?(@.name == "{#PRINTER_NAME}")].heldJobsCount.first()`</p>|
-|Printer {#PRINTER_NAME}: Status| |Dependent_item|papercut.printer.status["{#PRINTER_NAME}"] <p>**Preprocessing**:<br>- JSONPath: `$.printers[?(@.name == "{#PRINTER_NAME}")].status.first()`</p>|
+|Device {#DEVICE_NAME}: Status| |DEPENDENT|papercut.device.status["{#DEVICE_NAME}"] <p>**Preprocessing**:<br>- JSONPath: `$.devices[?(@.name == "{#DEVICE_NAME}")].state.status.first()`</p> |
+|Device {#DEVICE_NAME}: Status Description| |DEPENDENT|papercut.device.status.description["{#DEVICE_NAME}"] <p>**Preprocessing**:<br>- JSONPath: `$.devices[?(@.name == "{#DEVICE_NAME}")].state.statusDescription.first()`</p> |
+|Printer {#PRINTER_NAME}: Held Jobs| |DEPENDENT|papercut.printer.heldjobs["{#PRINTER_NAME}"] <p>**Preprocessing**:<br>- JSONPath: `$.printers[?(@.name == "{#PRINTER_NAME}")].heldJobsCount.first()`</p>|
+|Printer {#PRINTER_NAME}: Status| |DEPENDENT|papercut.printer.status["{#PRINTER_NAME}"] <p>**Preprocessing**:<br>- JSONPath: `$.printers[?(@.name == "{#PRINTER_NAME}")].status.first()`</p>|
 
 ## Triggers
 
